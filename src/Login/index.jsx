@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Home from "../Home";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 const Login = () => {
   const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   // User Login info
   const database = [
@@ -37,7 +37,8 @@ const Login = () => {
         // Invalid password
         setErrorMessages({ name: "pass", message: errors.pass });
       } else {
-        setIsSubmitted(true);
+        localStorage.setItem("authenticated", true);
+        navigate("/home");
       }
     } else {
       // Username not found
@@ -77,15 +78,7 @@ const Login = () => {
 
   return (
     <div className="app">
-      <div className="login-form">
-        {isSubmitted ? (
-          <div>
-            <Home />
-          </div>
-        ) : (
-          renderForm
-        )}
-      </div>
+      <div className="login-form">{renderForm}</div>
     </div>
   );
 };
