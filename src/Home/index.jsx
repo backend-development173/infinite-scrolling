@@ -1,3 +1,6 @@
+
+import InfiniteScroll from "react-infinite-scroll-component"; 
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
@@ -9,12 +12,12 @@ const Home = () => {
   );
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const getData = async function () {
-    await fetch("https://randomuser.me/api/?results=100")
-      .then((response) => response.json())
-      .then((data) => {
-        setPost(data.results);
-        setLoading(false);
+  
+  const getData = (count=15)=>{
+   axios.get(`https://randomuser.me/api/?results=${count}`)
+      .then((response) => {
+        setPost([...post, ...response.data.results]);
+        setLoading(false); 
       });
   };
 
@@ -29,21 +32,34 @@ const Home = () => {
 
   const mapper = (
     <div className="aligncenter">
-      <div className="list">
+      <InfiniteScroll
+                dataLength={post}
+                next={() => getData(10)}  
+                hasMore={true}
+                loader={
+                  <img
+                    src="https://th.bing.com/th/id/OIP.aNr2Az1aHm9Aqi0V-SVV-QHaFj?w=212&h=180&c=7&o=5&dpr=1.2&pid=1.7"
+                    alt="loading"
+                  />
+                }  
+              >
+          <div className="list">
         <ul>
-          {post.map((person) => {
+          {post.map((photos) => {
             return (
               <div className="wrapperr">
-                <li key={person.phone}>{person.name.first}</li>
+                <li key={photos.phone}>{photos.name.first}</li>
                 <img
-                  src={person.picture.thumbnail}
-                  alt={person.picture.thumbnail}
+                  src={photos.picture.thumbnail}
+                  alt={photos.picture.thumbnail}
                 />
               </div>
             );
           })}
         </ul>
       </div>
+              </InfiniteScroll>
+     
     </div>
   );
   if (!authenticated) {

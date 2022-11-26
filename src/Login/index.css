@@ -8,7 +8,7 @@
   height: 100vh;
   width: 100vw;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-color: #f8f9fd;
+  background-color: #f56f0a;
 }
 
 input[type="text"],
@@ -37,7 +37,7 @@ input[type="submit"]:hover {
 }
 
 .login-form {
-  background-color: white;
+  background-color: rgb(12, 147, 113);
   padding: 2rem;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

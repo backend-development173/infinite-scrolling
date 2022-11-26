@@ -8,12 +8,12 @@ const Login = () => {
   // User Login info
   const database = [
     {
-      username: "foo",
-      password: "bar",
+      username: "sunil",
+      password: "123456",
     },
     {
-      username: "user2",
-      password: "pass2",
+      username: "prep-admin",
+      password: "12345678",
     },
   ];
 
@@ -76,7 +76,7 @@ const Login = () => {
     </>
   );
 
-  return (
+  return(
     <div className="app">
       <div className="login-form">{renderForm}</div>
     </div>

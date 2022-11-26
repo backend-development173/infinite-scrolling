@@ -5,7 +5,8 @@ import Home from "./Home";
 import Login from "./Login";
 function App() {
   return (
-    <div className="container">
+    <div className="App" >
+      
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="home" element={<Home />} />
